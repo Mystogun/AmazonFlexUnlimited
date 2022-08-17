@@ -143,7 +143,7 @@ class FlexUnlimited:
     """
     self.__requestHeaders["X-Amz-Date"] = FlexUnlimited.__getAmzDate()
     requestBody = {
-      "serviceAreaIds": ["2"], 
+      "serviceAreaIds": ["2"],
       "apiVersion": "V2"
     }
     if self.desiredWarehouses is not None:
@@ -178,7 +178,7 @@ class FlexUnlimited:
     offerStartHour = offer.expirationDate.hour
 
     if self.minBlockRate:
-      if self.minBlockRate > offer.blockRate:
+      if self.minBlockRate < offer.blockRate:
         return
 
     if self.arrivalBuffer:
