@@ -3,6 +3,7 @@ from lib.Offer import Offer
 from lib.Log import Log
 import requests, time, os, sys, json
 from datetime import datetime
+from time import sleep
 
 try:
   from twilio.rest import Client
@@ -60,6 +61,7 @@ class FlexUnlimited:
         self.desiredStartHour = config["desiredStartHour"]  # start hour in military time
         self.desiredEndHour = config["desiredEndHour"]  # end hour in military time
         self.retryLimit = config["retryLimit"]  # number of jobs retrieval requests to perform
+        self.delay = config["delayInSeconds"]   # seconds between each request
         self.twilioFromNumber = config["twilioFromNumber"]
         self.twilioToNumber = config["twilioToNumber"]
         self.__retryCount = 0
@@ -207,6 +209,7 @@ class FlexUnlimited:
           offerResponseObject = Offer(offerResponseObject=offer)
           self.__processOffer(offerResponseObject)
         self.__retryCount += 1
+        sleep(self.delay)
       else:
         Log.error(offersResponse.json())
         break

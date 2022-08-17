@@ -5,6 +5,7 @@
   "desiredStartHour": 0,
   "desiredEndHour": 23,
   "retryLimit": 800,
+  "delayInSeconds": 5,
   "twilioAcctSID": "",
   "twilioAuthToken": "",
   "twilioFromNumber": "",
